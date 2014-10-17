@@ -1,0 +1,884 @@
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+% MODIFIED by Jonathan Kew, 2008-07-06
+% The header comments and encoding in this file were modified for inclusion with TeXworks.
+% The content is otherwise unchanged from the original distributed with the beamer package.
+
+\documentclass[10pt]{beamer}
+
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+
+\mode<presentation>
+{
+  \usetheme{Montpellier}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage{bibentry}
+% for bib on footnote  http://www.latex-community.org/forum/viewtopic.php?f=4&t=12027
+
+%\usepackage[utf8]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\usepackage{booktabs}
+% for beautiful table
+\title[ DG participation in DS control] % (optional, use only with long paper titles)
+%{Distribution System  Volt/Var Control in the Presence of DGs}
+{DG Operation for Distribution System  Volt/Var Control}
+\subtitle
+{} % (optional)
+
+\author[N. Daratha] % (optional, use only with lots of authors)
+{N.~Daratha }
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[IIT Roorkee] % (optional, but mostly needed)
+{
+
+guided by \\ \vspace{.10cm}Prof. J.D. Sharma and Prof. B. Das\\
+\vspace{.10cm}  Department of Electrical Engineering\\
+IIT Roorkee
+}
+  
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[Short Occasion] % (optional)
+{PhD Seminar Course}
+
+\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\setbeamertemplate{footline}[page number]
+\begin{document}
+\def\newblock{\hskip .11em plus .33em minus .07em} % for bibliography and newblock
+\bibliographystyle{ieeepes}
+\nobibliography{./dpf}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+%%
+\begin{frame}{Proposition}
+\begin{center}
+There is a need for an effective methodology of multi-objective  \textbf{variable-power-factor distributed generation operation} for distribution system volt/var control during normal and emergency situation.\\ 
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}{Outline}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Since this a solution template for a generic talk, very little can
+% be said about how it should be structured. However, the talk length
+% of between 15min and 45min and the theme suggest that you stick to
+% the following rules:  
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+%\part{Introduction}
+\section{Electric Distribution System}
+
+%\begin{frame}[Distribution System]{Electric Power System}{Distribution System}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=4.5cm]{images/ElectricPowerSystem2.pdf} 
+%	\label{fig:DFIG}
+%\end{figure}
+%\end{frame}
+
+
+%\begin{frame}[Elements of Distribution Systems]{Elements of Distribution Systems}
+%Excluding DG, ....
+%\begin{itemize}
+%\item
+%All DS must have feeders and transformer with On-load Tap Changer.
+%\item Most of them have shunt capacitors and/or shunt reactor
+%\item fewer of them have SVC (static Var compensator)
+%\item even fewer of them have D-STATCOM.
+%\end{itemize}
+%\end{frame}
+
+
+\begin{frame}{Variation! Variation! Variation!}[Distribution System]
+\begin{figure}
+	\centering
+		\includegraphics[height=6.5cm]{images/diagramumum.pdf} 
+	\label{fig:umum}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{}[Distribution System]
+\begin{figure}
+	\centering
+		\includegraphics[height=6.5cm]{images/awarenesshot.pdf} 
+	\label{fig:aware}
+\end{figure}
+\end{frame}
+
+
+%\subsection{Multi-Objectiveness}
+%\begin{frame}{We Want Many Objectives}
+%A distribution system must
+%\begin{itemize}
+%\item
+%have good voltage regulation
+%\item be energy efficient
+%\item
+%have wide stability margin
+%\item support transmission system reactive power need
+%\item of course, maximize overall profit.
+%\end{itemize}
+%However, achieving all of them at the same time is NOT possible.
+%\end{frame}
+
+%\begin{frame}[Nature of Line]{Feeders: Minimum Losses $\neq$  Minimum Voltage Drop}
+%\begin{itemize}
+%\item Feeders bring electricity to consumers.
+%\item
+%A feeder power loss is minimum when when load is pure resistive.
+%\item A feeder voltage drop is minimum when load capacitive reactive power equals feeders requirement.
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}{Control Devices in Distribution Systems}
+For effective, secure, and safe operation of DS, utility control:
+\begin{itemize}
+\item Switches
+\item Voltage regulators (OLTC, SC, SR)
+\item Distributed Generators
+\item Energy Storages
+\end{itemize}
+\end{frame}
+
+
+\section{Distributed Generation}
+
+%\subsection[Definition and Classification]{Definition and Classification}
+
+\begin{frame}{Distributed Generation (DG)}{definition, altenative names}
+  % - A title should summarize the slide in an understandable fashion
+  %   for anyone how does not follow everything on the slide itself.
+  \begin{itemize}
+  \item
+    a distributed generation (DG) is a small generation connected to distribution network
+ \item IEEE Standard Dictionary Terms : %\footnote{\tiny \bibentry{4116787}}:
+  \begin{quote}
+    Electric generation facilities connected to an Area EPS (Electric Power System) through a PCC (Point of Common Copling);
+    a subset of DR (Distributed Resources).
+   \end{quote}
+   \item 
+    alternative names: embedded generation, dispersed generation
+   \end{itemize}
+\end{frame}
+
+\begin{frame}{Distributed Generation (DG)}{International Energy Agency's Definition \footnote{\tiny \bibentry{IEA2002}}}
+\begin{itemize}
+\item
+\textbf{Distributed generation} is generating plant serving a customer on-site
+or providing support to a distribution network, connected to the grid at
+distribution-level voltages.
+\item
+\textbf{Dispersed generation} is distributed generation plus wind power and
+other generation, either connected to a distribution network or completely
+independent of the grid.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{DG Classifications}
+
+  DGs can be\dots
+  \begin{itemize}
+  \item  renewable (wind,PV,hydro) or  non renewable (diesel)
+  \item   dispatchable (diesel, micro/small hydro) or not-dispatchable (wind, PV)
+  \item    intermittent (PV, wind, ocean wave) or        steady (diesel, hydro, fuel cell)
+  \item   grid-connected or isolated
+\end{itemize}
+\end{frame}
+
+
+%\subsection[DG grid  Connection]{DG grid  Connection}
+
+\begin{frame} {DG-to-Power Grid Interface}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+DG Type & Electric Machine & Interface \\
+\midrule
+ICE & SG & directly \\
+& IG & directly \\
+Gas Turbines & SG & directly \\
+Micro-turbines & PMSG & rectifier+inverter or\\ &&
+ AC/AC converter \\
+ & Squirrel cage IG & directly \\
+Wind & DFIG & rectifier+ inverter \\
+ & SG or PMSG & rectifier + inverter\\
+Photovoltaic && inverter\\
+Fuel cell&  & inverter\\
+\bottomrule
+\end{tabular}
+\end{center}
+\footnote{ICE=Internal Combustion Engine; SG=Synchronous Generator; IG= Induction Generator; PMSG = Permanent Magnet SG; DFIG=Doubly Fed IG}
+\end{frame}
+
+%\begin{frame}{DG Impacts on Voltage Regulation}{Before Fault}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=4.5cm]{images/VR1.pdf} 
+%	\label{}
+%\end{figure}
+%
+%\end{frame}
+%
+%\begin{frame}{DG Impacts on Voltage Regulation}{After Fault}
+%
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=4.5cm]{images/VR2.pdf} 
+%	\label{}
+%\end{figure}
+%
+%\end{frame}
+%
+%\begin{frame}	{DG May Not Participate in Voltage Regulation}
+%IEEE Standard 1547-2003:\\ \vspace{.2cm}
+%\begin{quotation}
+%4.1.1 Voltage regulation\\
+%The DR shall \textbf{not actively regulate} the voltage at the PCC. The DR shall \textbf{not cause} the Area EPS service
+%voltage at other Local EPSs to go outside the requirements of ANSI C84.1-1995, Range A.
+%\end{quotation}
+%\end{frame}
+
+
+
+%\begin{frame}{a DG Must Detect and Disconnect from Islanded DS}
+%IEEE Standard 1547-2003:\\ \vspace{.2cm}
+%\begin{quote}
+%4.4.1 Unintentional islanding\\ \vspace{.5cm}
+%For an unintentional island in which the DR energizes a portion of the Area EPS through the PCC, the DR
+%interconnection system shall \textbf{detect} the island and \textbf{cease to energize} the Area EPS within two seconds of the
+%formation of an island.\\\vspace{.5cm}
+%4.4.2 Intentional islanding\\ \vspace{.5cm}
+%This topic is \textbf{under consideration} for future revisions of this standard.
+%\end{quote}
+%\end{frame}
+
+
+
+
+%\subsection[DG's Reactive Power Capability]{DG's Reactive Power Capability}
+\begin{frame}{Some DGs Reactive Power Capability }
+\begin{itemize}
+\item Interface that can control reactive power :
+
+	\begin{itemize}
+		\item  synchronous machine \footnote{\bibentry{4181375}} (hydro,diesel) 
+		\item  voltage source converter (PV, DFIG\footnote{\bibentry{5611583}}, Ocean Energy)
+	\end{itemize}
+
+%\item  Interface that cannot control reactive power: asynchronous machine.
+\end{itemize}
+
+\begin{figure}
+	\centering
+		\includegraphics[height=3cm]{images/DFIG.pdf}
+	\label{fig:DFIG}
+\end{figure}
+
+\end{frame}
+
+%\begin{frame}{DGs Have Low Utilization Level}
+%\begin{itemize}
+%\item PV depends on solar irradiance.
+%\item Wind generator depends on wind speed.
+%\item Both solar irradiation and wind speed is highly intermittent
+%\item There is significant fraction of the time when DG works much below rated power.
+%\item During those time, DGs can provide reactive power service.
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}{Distributed Reactive Power Generation Control for Voltage Rise Minimization in Distribution Network\footnote{\bibentry{4472349}}}
+\begin{itemize}
+\item Prevent significant voltage rise because of DG presence.
+\[
+Q_G^*  \approx \frac{X}{R^2 + X^2} - \sqrt{\frac{X}{R^2 + X^2}^2 - P_G^2 + \frac{2RP_G}{R^2 + X^2}  }
+\]
+\item Compared with constant power factor approach.
+\item Effective reactive power control with two consequences:
+   \begin{itemize}
+   \item increased stress on tap changers.
+   \item increased feeder losses.
+   \end{itemize}
+\item Voltage become almost independent of DG real power generation.
+\item Voltage dependence on load is almost unchanged.
+\end{itemize}
+\end{frame}
+
+
+%\begin{frame}{Voltage Become Almost Independent of DG Real Power Generation}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=5cm]{images/voltagerise1.pdf}
+%	\label{fig:DFIG}
+%\end{figure}
+%\end{frame}
+%
+%
+%\begin{frame}{Voltage Dependence on Load is Almost Unchanged}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=5cm]{images/voltagerise2.pdf}
+%	\label{fig:DFIG}
+%\end{figure}
+%\end{frame}
+
+
+\begin{frame} {Grid Interconnection of Renewable Energy Sources at Distribution Level with Power Improvement Features \footnote{\bibentry{5617328}}}
+\begin{itemize}
+\item Some other functions that can be provided by DGs:
+\begin{itemize}
+\item power transfer at unity power factor
+\item local reactive power support
+\item harmonic mitigation
+\item load balancing
+\end{itemize}
+\item Those functions can be achieved simultaneously or individually
+\item no additional hardware is needed
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Observation I}
+\begin{itemize}
+\item DG can cause voltage rise on the feeder to which it is connected.
+\item There is a method to mitigate the voltage rise 
+   \begin{itemize}
+    \item variable power factor operation
+    \item increased number of switching and losses.
+    \end{itemize}
+\item Current grid code do not allowed DG to control its output voltage.
+\item DGs is also potential to improve power quality.
+\end{itemize}
+\end{frame}
+
+
+
+\section{Volt/Var Control In Distribution System With DGs}
+
+\begin{frame}
+\begin{center}
+\huge
+Works in which DGs are in \textbf{constant power factor mode}.
+\end{center}
+\end{frame}
+
+\begin{frame} {Optimal Distribution Voltage Control and coordination with distributed generation \footnote{\bibentry{4374135}}}
+\begin{itemize}
+\item Minimize total losses and voltage deviation
+\item Control OLTC, Shunt Capacitor (SC), Shun Reactor (SR), Step Voltage Regulator (SVR), Static Voltage Controller (SVC)
+\item Optimization methods : Genetic Agorithm
+\item DGs = PVs with constant unity power factor.
+
+\item Centralized control
+\end{itemize}
+\end{frame}
+
+\begin{frame} {Optimal Distribution Voltage Control and coordination with distributed generation}
+\begin{itemize}
+\item Objective: $\min \sum w_1 |V_{n,ref} -V_n|+w_2Loss$
+\item Contraints:
+    \begin{itemize}
+       \item voltage limits
+       \item tap position limits (OLTC)
+    \end{itemize}
+\item Optimization methods : Genetic Agorithm
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{Optimal Distribution Voltage Control and coordination with distributed generation}{SVC Model}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=3.5cm]{images/SVC.pdf}
+%	\label{fig:DFIG}
+%\end{figure}
+%\end{frame}
+%
+%
+%\begin{frame}{Optimal Distribution Voltage Control and coordination with distributed generation}{SVR Model}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=3.5cm]{images/LRT.pdf}
+%	\label{fig:LRT}
+%\end{figure}
+%\end{frame}
+
+\begin{frame} {Works in Which DGs are in CONSTANT power factor mode 1}
+\begin{itemize}
+\item \bibentry{Casavola201125} $\rightarrow$ OLTC only
+\item \bibentry{915503} $\rightarrow$ OLTC only
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Works in Which DGs are in CONSTANT power factor mode 2}
+\begin{itemize}
+\item \bibentry{Viawan2007} $\rightarrow$ OLTC and SC
+\item %Design of The Optimal ULTC parameters in Distribution System with Distributed Generations 
+\bibentry{4717276} $\rightarrow$ OLTC only
+\item all of them do not include SVC and D-STATCOM
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Observation II: Constant Power Factor Operation}
+Among paper considering DG \textbf{constant} power factor operation:
+\begin{itemize}
+\item most include OLTC and DG
+\item other  also include SC
+\item only one include SVR and SVC
+\item none include D-STATCOM
+\item single objective mathematical programming
+\end{itemize}
+\end{frame}
+%\subsection[Grid Code for Voltage Regulation]{Grid Code for Voltage Regulation}
+%\subsection[Voltage Regulator]{Voltage Regulators}
+%\subsection[DG Participation in Voltage Regulation]{DG participation in Voltage Regulation}
+
+\section{DG Participation in Volt/Var Control}
+
+\begin{frame}
+\begin{center}
+\huge
+Works in which DGs are in \textbf{variable power factor mode}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}{Minimizing Reactive Power Support for Distributed Generation\footnote{\bibentry{5738712}}}
+\begin{itemize}
+\item Choosing power factor of DGs and setting of OLTC
+\item Maximising DG reactive power generation
+\item Reducing transmission system burden
+\item Enhanced passive approach vs active approach
+\item Uses DG and OLTC only
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Multiagent Dispatching Scheme for DGs for Voltage Support on Distribution Feeders\footnote{\bibentry{4077092}}}
+\begin{itemize}
+\item Each generator control its output based on local measurements.
+\item Those measurements used to calculate sensitivity factors.
+\item Coordination between DGs through a Control Net Protocol (CNP)
+\item Reliable communication network
+\item Uses DG and OLTC only
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{Options for Controls of Reactive Power by Distributed PV Generators \footnote{\bibentry{5768094}}}
+%\begin{itemize}
+%\item Local control of PV generators
+%\item Local measurements were sufficient for voltage regulation
+%\item Support the idea of Baran and Markabi (2007)
+%\item Uses DG and OLTC only
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}{Voltage and Reactive Power Control in Systems with Synchronous Machine-Based Distributed Generation\footnote{\bibentry{4443852}}}
+\begin{itemize}
+\item Minimize total losses.
+\item Include OLTC and SC.
+\item DG regulate voltage at point of common connection.
+\item If SC is enough, DG participation does not reduce losses significantly.
+\item Excess reactive power can support transmission system (Ochoa, et. al. , 2011).
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{Short-Term Schedulling and Control of Active Distribution Systems with High Penetration of Renewable Energy Resources\footnote{\bibentry{5546901}} }
+\begin{itemize}
+\item a day-ahead scheduler + intra-day (15 minutes) scheduler.
+\item includes dispatchable and not-dispatchable DGs.
+\item a day-ahead scheduler is a forecaster of generator and energy storage.
+\item intraday scheduler minimize generation deviation define by the other scheduler.
+\end{itemize}
+\end{frame}
+
+
+%\begin{frame}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=7cm]{images/2stageERS.pdf}
+%	\label{fig:2stageERS}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame} {The Day-Ahead Scheduler}
+%\begin{itemize}
+%\item objective is minimal energy cost  \[ \min \sum_{r=1}^R \sum_{j=1}^N c_{j,r} \Delta t P_j^r\]
+%\item constraints:
+%  \begin{itemize}
+%  \item Electrical Load balance
+%  \item Storage units
+%  \item Power and energy limits
+%  \item Thermal load balance
+%  \end{itemize}
+%\item inputs: load forecast, generation forecast, energy cost, limits of generating units, initial status of storage units.
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{The Intra-day Scheduler}
+%\begin{itemize}
+%\item Multiobjective:
+%\[ \min_{\Delta x} \left[	  \sum \alpha S_P  +\beta P_{loss} + \sum \gamma  S_V \right] \]
+%   \begin{itemize}
+%      \item minimal voltage deviation
+%      \item minimal generation deviation
+%      \item minimal network losses
+%   \end{itemize}
+%\item Input: 15-minutes ahead forecast, state estimation results
+%\item output: control signal for OLTC, voltage regulators, DGs and energy storages
+%\item controlled variable: active and reactive power generation and OLTC tap position
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=5cm]{images/intradaysche.pdf}
+%	\label{fig:intradaysche}
+%\end{figure}
+%\end{frame}
+
+\begin{frame}{What are missing?}
+Further considerations are needed:
+\begin{itemize}
+\item switching seguence?
+\item transition cost?
+\item security?
+\end{itemize}
+\begin{figure}
+	\centering
+		\includegraphics[height=7cm]{images/optimumpath.pdf}
+	\label{fig:optimumpath}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\huge Reducing Number of Switching: \textbf{1. Constraint Addition}
+\end{center}
+\end{frame}
+
+\begin{frame}{Importance of Switching Reduction}
+\begin{itemize}
+\item switching may initiate transients
+\item device has limited  total number of switchings
+\item DG's variable power factor mode increase OLTC's switching numbers
+\item slow mechanical switch vs fast load change and intermitent renewables
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Reactive Power and Voltage Control in Distribution System with Limited Switching Operation \footnote{\bibentry{4808225}}}
+\begin{itemize}
+\item Objective : min energy losses \[  \min E = \sum_{t=0}^{23} f(x_1(t),x_2(t),x_3(t)) \]
+\item $x_1$ discrete variables: OLTCs and Capacitors
+\item $x_2$ Q and V
+\item $x_3$ P and $\theta$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Reactive Power and Voltage Control in Distribution System with Limited Switching Operation}
+Constraints:
+\begin{itemize}
+\item power flow equations
+\item tap positions limits
+\item capacity limits
+\item additional constraints : Maximum Allowable daily switching operation (MADSON)
+\[ h(x_1(0),x_1(1),..., x_1(23)) = \sum_{t=0}^{23} |x_{1(t+1)} -x_{1(t)}| \leq S_{x1}C_{x1}\]
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{Reactive Power and Voltage Control in Distribution System with Limited Switching Operation}
+%Proposed optimization method:
+%\begin{itemize}
+%\item discrete variables are treated as continous variables
+%\item inequality constraints are converted into equality constraints with help from slack variables
+%\[x_{1(t)}+s_{u1(t)}=x_{1(t)max}\]
+%\[x_{1(t)} - s_{u1(t)}=x_{1(t)min}\]
+%\[x_{2(t)}+s_{u2(t)}=x_{2(t)max}\]
+%\[x_{2(t)} - s_{u2(t)}=x_{2(t)min}\]
+%\[h(x_{1(0)},x_{1(2)},...,x_{1(23)})=S_{x_1}C_{x_2}\]
+%\[s_{u1(t)}, s_{l1(t)}, s_{u2(t)}, s_{l1(t)} \geq 0 \]
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Reactive Power and Voltage Control in Distribution System with Limited Switching Operation}
+%Proposed optimization method:
+%\begin{itemize}
+%\item interior point method was used
+%\item KKT are derived and solved with Newton-Raphson method.
+%\item compared with Genetic Algorithm, BARON and DICOPT
+%\item test cases: Baran and Wu 69-buses system and chinese 14-buses system
+%\item the proposed method is faster than other methods.
+%\end{itemize}
+%\end{frame}
+%
+%
+%\begin{frame}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=5cm]{images/tableMADSON.pdf}
+%	\label{fig:tableMADSON}
+%\end{figure}
+%\end{frame}
+
+
+\begin{frame}
+\begin{center}
+\huge Alternative Approach: \textbf{Rule-based Control}
+\end{center}
+\end{frame}
+
+\begin{frame}{Reasons for Alternative Approach}
+\begin{itemize}
+\item Our problem is NP-hard MINLP unless some simplification is assumed.
+\item Distribution system is large
+\item Slow voltage controller movement and changing load and generation profile
+\item minimum switching is favorable
+\item some switching action are mutually exclusive
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Configurable, Hierarchical, Model-Based Control of Electrical Distribution Circuits\footnote{\bibentry{5604720}}  }
+\begin{itemize}
+ \item objective : close and better operating state; minimize change of state
+ \item preference-based multi objectives and constraints:
+  \begin{itemize}
+    \item voltage regulation
+    \item Capacity constraint
+    \item losses
+    \item priority is adjustable
+  \end{itemize}
+ \item control devices : SC, OLTC, SVR, DG
+   \begin{itemize}
+    \item single step (SS) : SC, DG (on-min-on)
+    \item multi step (MS) : OLTC, DG (min - max discretized)
+    \end{itemize}
+
+\end{itemize}
+\end{frame}
+%
+%\begin{frame}{CHMC Main Loop}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=6cm]{images/CHMC1.pdf}
+%	\label{fig:CHMC1}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{CHMC Main Loop}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=6cm]{images/CHMC2.pdf}
+%	\label{fig:CHMC2}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{Selection of New State}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=6cm]{images/CHMCdecision1.pdf}
+%	\label{fig:CHMCdecision1}
+%\end{figure}
+%If voltage deviation is smaller than before, accept this newer state. 
+%\end{frame}
+
+%\begin{frame} {Selection of New State}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=6cm]{images/CHMCdecision2.pdf}
+%	\label{fig:CHMCdecision2}
+%\end{figure}
+%\end{frame}
+
+%\begin{frame} {Selection of New State}
+%\begin{figure}
+%	\centering
+%		\includegraphics[height=6cm]{images/CHMCdecision3.pdf}
+%	\label{fig:CHMCdecision3}
+%\end{figure}
+%\end{frame}
+
+
+
+\begin{frame}{Ways to Reduce Number of Switching}
+Using previous methods, variable power factor DGs operation increase number of switching. There are to ways to reduce the number:
+\begin{itemize}
+\item MADSON constraint 
+\item rule-based optimization
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Observation III: Variable Power Factor Operation}
+Among paper considering DG \textbf{variable} power factor operation:
+\begin{itemize}
+\item most include only OLTC and DG (one include DG)
+\item single-objective mathematical programming
+\item increased number of switching is expected
+\end{itemize}
+\end{frame}
+
+%
+%\begin{frame}{Observation IV: Possible Gaps for Future Research}
+%What is not available in literature is volt/var control strategy/method which:
+%\begin{itemize}
+%\item include a rather complete types of (potential) voltage regulator
+%\item is multi-objective optimization plus higher information processing
+%\end{itemize}
+%In addition, optimum switching sequence needed to reach the optimum state has not been well studied.
+%\end{frame}
+
+
+\begin{frame}{}
+\begin{center}
+\huge{Research Gap}
+\end{center}
+\end{frame}
+\begin{frame}{Research Gaps: SVC}
+\begin{enumerate}
+\item They are available.
+\item SVCs are much faster than OLTC and SC.
+\item DG intermittence may be to fast for OLTC.
+\item Coordination is not extensively studied.
+\item Previous coordination method assume single phase modelling   \footnote{\bibentry{4374135}}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Why Three Phase Modeling?}
+\begin{enumerate}
+\item Distribution Feeders are not transposed.
+\item There are many single phase load and feeder.
+\item Small-scale DG is single phase.
+\item Unbalance can cause voltage violations.
+\item non-uniform OLTC parameters setting is better that uniform  \footnote{\bibentry{4717276}}.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Why DG?}
+\begin{enumerate}
+\item DG penetration is increasing
+\item DG reverse power flow is creating new situation
+\item Renewable Energy is intermittent
+\item Simulated  DG + OLTC coordination proved to be beneficial.
+\end{enumerate}
+\end{frame}
+
+%\section{Mathematical Programming Consideration}
+%%\subsection{Nature of The Problem}
+
+%%\subsection{Model Completeness}
+
+
+\section*{Summary}
+
+\begin{frame}{Summary}
+  % Keep the summary *very short*.
+  \begin{itemize}
+  \item DGs reactive power capability is not fully utilised.
+  \item Grid codes require  constant-power factor operation.
+  \item Most published research follow the grid codes.
+  \item Some works consider the variable-power  factor (VPF) operation.
+  \item VPF operation increase number of switchings of voltage regulators
+  \item two ways in limiting switching number: MADSON constraint and a rule-based approach
+
+  \end{itemize}  
+%  % The following outlook is optional.
+%%  \vskip0pt plus.5fill
+%  \begin{itemize}
+%  \item
+%    Outlook\\
+%\textit{multiobjective volt/var control using modern and conventional regulators and DGs may not be well studied.}
+%  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\textbf{Thank You Very Much}
+\maketitle
+\end{center}
+
+ % \titlepage
+\end{frame}
+
+
+
+\end{document}
+
+
